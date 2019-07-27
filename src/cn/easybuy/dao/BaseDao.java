@@ -44,6 +44,8 @@ public class BaseDao {
 					pstmt.setObject(i+1, params[i]);
 				}
 			}
+			System.out.println(pstmt);
+			logger.debug(pstmt);
 			
 			//执行查询命令
 			rs=pstmt.executeQuery();
@@ -76,6 +78,8 @@ public class BaseDao {
 					pstmt.setObject(i+1, params[i]);
 				}
 			}
+			
+			logger.debug(pstmt);
 			
 			//执行查询命令
 			result=pstmt.executeUpdate();

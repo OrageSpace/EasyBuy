@@ -32,10 +32,10 @@ public class ProductCategoryDaoImpl extends BaseDao implements ProductCategoryDa
 		List<ProductCategory> productCategories=new ArrayList<ProductCategory>();
 		ProductCategory productCategory=null;
 		
-		StringBuffer sql=new StringBuffer("SELECT `id`,`name`,`parentId`,`type` FROM `easybuy_product_category` WHERE 1=1");
+		StringBuffer sql=new StringBuffer("SELECT `id`,`name`,`parentId`,`type`,`iconClass` FROM `easybuy_product_category` WHERE 1=1");
 		
 		if(parentId!=null&&!"".equals(parentId)) {//判断是否有其他参数
-			sql.append(" and `parentId`=?");
+			sql.append(" and `type`=?");
 			rs=super.executeQuery(sql.toString(), parentId);
 		}else {
 			rs=super.executeQuery(sql.toString(),null);

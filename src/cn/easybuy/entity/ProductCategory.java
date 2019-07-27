@@ -9,6 +9,7 @@ public class ProductCategory {
 	private String name;//分类名称
 	private int parentId;//父分类编号
 	private int type;//类型
+	private String iconClass;//分类图标样式
 	
 	public int getId() {
 		return id;
@@ -33,5 +34,11 @@ public class ProductCategory {
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	public String getIconClass() {
+		return iconClass;
+	}
+	public void setIconClass(String iconClass) {
+		this.iconClass = iconClass;
 	}
 }
