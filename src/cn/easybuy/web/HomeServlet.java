@@ -15,7 +15,7 @@ import cn.easybuy.service.product.ProductCategoryService;
 import cn.easybuy.service.product.ProductCategoryServiceImpl;
 
 @WebServlet(urlPatterns= {"/Home"},name="Home")
-public class HomeServlet extends HttpServlet {
+public class HomeServlet extends AbstracterServlet {
 	
 	private ProductCategoryService pcs=null;
 	
@@ -47,5 +47,10 @@ public class HomeServlet extends HttpServlet {
 		
 		//将页面转发到/pre/index.jsp
 		request.getRequestDispatcher("pre/index.jsp").forward(request, response);
+	}
+
+	@Override
+	public Class getServletClass() {
+		return this.getClass();
 	}
 }

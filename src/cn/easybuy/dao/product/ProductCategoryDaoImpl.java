@@ -24,6 +24,23 @@ public class ProductCategoryDaoImpl extends BaseDao implements ProductCategoryDa
 	}
 	
 	private Logger logger=Logger.getLogger(ProductCategory.class.getName());
+	
+	/**
+	  * 获取结果集中的数据
+	 * @param rs
+	 * @return 商品分类对象
+	 * @throws SQLException
+	 */
+	public ProductCategory tableToClass(ResultSet rs)
+			throws SQLException {
+		ProductCategory productCategory=new ProductCategory();
+		productCategory.setId(rs.getInt("id"));
+		productCategory.setName(rs.getString("name"));
+		productCategory.setParentId(rs.getInt("parentId"));
+		productCategory.setType(rs.getInt("type"));
+		
+		return productCategory;
+	}
 
 	@Override
 	public List<ProductCategory> queryAllProductCategory(String parentId)
@@ -44,15 +61,12 @@ public class ProductCategoryDaoImpl extends BaseDao implements ProductCategoryDa
 		try {
 			//循环读取结果集中的数据
 			while (rs.next()) {
-				productCategory=new ProductCategory();
-				productCategory.setId(rs.getInt("id"));
-				productCategory.setName(rs.getString("name"));
-				productCategory.setParentId(rs.getInt("parentId"));
-				productCategory.setType(rs.getInt("type"));
+				productCategory=this.tableToClass(rs);
 				
 				productCategories.add(productCategory);
 			}
 		} catch (SQLException e) {
+			logger.error(e.getMessage());
 			throw e;
 		}finally {
 			//释放预编译sql命令执行对象 与结果集对象 数据库连接对象需要在业务逻辑层关闭
