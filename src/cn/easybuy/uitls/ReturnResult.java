@@ -47,7 +47,7 @@ public class ReturnResult {
 	 * 默认返回成功状态信息
 	 * @return 结果对象
 	 */
-	public Object returnSuccess() {
+	public ReturnResult returnSuccess() {
 		this.status=Constans.ReturnResult.SUCCESS;
 		return this;
 	}
@@ -58,7 +58,7 @@ public class ReturnResult {
 	 * @param message
 	 * @return 结果对象
 	 */
-	public Object returnSuccess(Object data,String message) {
+	public ReturnResult returnSuccess(Object data,String message) {
 		this.status=Constans.ReturnResult.SUCCESS;
 		this.data=data;
 		this.message=message;
@@ -68,9 +68,9 @@ public class ReturnResult {
 	/**
 	  * 返回请求失败信息
 	 * @param message
-	 * @return
+	 * @return 结果对象
 	 */
-	public Object returnFail(String message) {
+	public ReturnResult returnFail(String message) {
 		this.message=message;
 		this.status=Constans.ReturnResult.FAIL;
 		return this;

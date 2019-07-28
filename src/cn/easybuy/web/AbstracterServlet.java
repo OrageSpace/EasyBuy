@@ -36,24 +36,20 @@ public abstract class AbstracterServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//设置请求的编码 防止请求中文乱码
-		request.setCharacterEncoding("UTF-8");
-		//设置响应内容类型 以及编码格式
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
 		//获取请求中的参数值 action的value
 		String action=request.getParameter("action");
+		
 		Method method=null;
 		Object result=null;
 		
 		try {
 			if(EmptyUtil.isEmpty(action)) {
-				request.getRequestDispatcher("/pre/index.jsp").forward(request, response);
+				request.getRequestDispatcher("Home?action=index").forward(request, response);
 			}else {
 				method=this.getServletClass().getDeclaredMethod(action, HttpServletRequest.class,HttpServletResponse.class);
+				
 				//使用invoke()调用方法
-				result=method.invoke(this, request,response);
+				result=method.invoke(this,request,response);
 			}
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
@@ -87,7 +83,13 @@ public abstract class AbstracterServlet extends HttpServlet {
 	private void toView(HttpServletRequest request, HttpServletResponse response, Object result) {
 		if(result instanceof String) {//如果result为String类型 则表示需要跳转页面
 			String path=result+".jsp";
-			this.toView(request, response, result);
+			try {
+				request.getRequestDispatcher(path).forward(request, response);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}else {
 			this.writeDate(result,response);
 		}

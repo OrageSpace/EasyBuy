@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import cn.easybuy.entity.ProductCategory;
 import cn.easybuy.service.product.ProductCategoryService;
 import cn.easybuy.service.product.ProductCategoryServiceImpl;
@@ -17,9 +19,11 @@ import cn.easybuy.service.product.ProductCategoryServiceImpl;
 @WebServlet(urlPatterns= {"/Home"},name="Home")
 public class HomeServlet extends AbstracterServlet {
 	
-	private ProductCategoryService pcs=null;
+	private ProductCategoryService pcs=new ProductCategoryServiceImpl();	;
 	
-	@Override
+	private static Logger logger=Logger.getLogger(HomeServlet.class.getName());
+	
+	/*@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		this.doPost(request, response);
@@ -47,6 +51,19 @@ public class HomeServlet extends AbstracterServlet {
 		
 		//将页面转发到/pre/index.jsp
 		request.getRequestDispatcher("pre/index.jsp").forward(request, response);
+	}*/
+	
+	public String index(HttpServletRequest request,HttpServletResponse response) {
+		//获取请求中的参数值
+		String parentId="1";
+		
+		//调用查询商品分类信息的方法
+		List<ProductCategory> pcList=pcs.queryAllProductCategory(parentId);
+		
+		//将查询到的内容保存到request作用域中
+		request.setAttribute("pcList", pcList);
+		
+		return "/pre/index";
 	}
 
 	@Override
