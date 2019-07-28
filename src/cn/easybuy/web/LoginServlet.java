@@ -14,7 +14,11 @@ import cn.easybuy.service.user.UserServiceImpl;
 import cn.easybuy.uitls.EmptyUtil;
 import cn.easybuy.uitls.ReturnResult;
 import cn.easybuy.uitls.SecrityUtils;
-
+/**
+ * 登录请求控制处理类
+ * @author 青云 .ltd
+ *
+ */
 @WebServlet(urlPatterns= {"/Login"},name="Login")
 public class LoginServlet extends AbstracterServlet {
 	

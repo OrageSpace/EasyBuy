@@ -1,5 +1,7 @@
 package cn.easybuy.dao.user;
 
+import java.sql.SQLException;
+
 import cn.easybuy.entity.User;
 
 /**
@@ -15,4 +17,12 @@ public interface UserDao {
 	 * @throws Exception 
 	 */
 	public User getUserInfoByLoginName(String loginName) throws Exception;
+	
+	/**
+	 * 用户注册的方法
+	 * @param user 待保存的用户信息对象
+ 	 * @return 受影响行数
+	 * @throws SQLException 
+	 */
+	public int register(User user) throws SQLException;
 }

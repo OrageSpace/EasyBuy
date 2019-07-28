@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+import com.mysql.jdbc.Statement;
+
 import cn.easybuy.uitls.DataBaseUtil;
 
 /**
@@ -55,6 +57,47 @@ public class BaseDao {
 		}
 		
 		return rs;
+	}
+	
+	/**
+	 * 执行插入语句的方法
+	 * @param sql
+	 * @param params
+	 * @return 主键值
+	 * @throws SQLException
+	 */
+	public static int executeInsert(String sql,Object...params) 
+			throws SQLException{
+		Long id=0L;
+		
+		try {
+			//实例化预编译sql对象
+			pstmt=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			//为预编译sql赋值
+			if(params!=null) {
+				for (int i = 0; i < params.length; i++) {
+					pstmt.setObject(i+1, params[i]);
+				}
+			}
+			
+			//执行命令
+			pstmt.executeUpdate();
+			//接收返回的键值
+			ResultSet rs=pstmt.getGeneratedKeys();
+			
+			//读取第一行第一列的数据
+			if(rs.next()) {
+				id=rs.getLong(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			//释放资源  数据库连接统一在业务逻辑层关闭
+			DataBaseUtil.closeAll(null, pstmt, null);
+		}
+		
+		return id.intValue();
 	}
 	
 	/**

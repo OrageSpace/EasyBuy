@@ -15,7 +15,11 @@ import org.apache.log4j.Logger;
 import cn.easybuy.entity.ProductCategory;
 import cn.easybuy.service.product.ProductCategoryService;
 import cn.easybuy.service.product.ProductCategoryServiceImpl;
-
+/**
+ * 访问首页控制类
+ * @author 青云 .ltd
+ *
+ */
 @WebServlet(urlPatterns= {"/Home"},name="Home")
 public class HomeServlet extends AbstracterServlet {
 	

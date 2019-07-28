@@ -38,4 +38,27 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
+	public boolean register(User user) {
+		boolean flag=false;
+		
+		try {
+			//获取数据库连接
+			conn=DataBaseUtil.getConnection();
+			//实例化数据访问类对象
+			userDao=new UserDaoImpl(conn);
+			
+			int result=userDao.register(user);
+			
+			flag=result>0;//判断是否新增成功
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			//业务完成后统一 释放数据库连接
+			DataBaseUtil.closeAll(conn, null, null);
+		}
+		
+		return flag;
+	}
+
 }

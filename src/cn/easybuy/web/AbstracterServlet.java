@@ -17,7 +17,11 @@ import com.alibaba.fastjson.JSONObject;
 
 import cn.easybuy.uitls.EmptyUtil;
 import cn.easybuy.uitls.ReturnResult;
-
+/**
+ * 所有控制类的抽象基类
+ * @author 青云 .ltd
+ *
+ */
 public abstract class AbstracterServlet extends HttpServlet {
 	/**
 	 * 抽象类 用于获取需要的实际类型

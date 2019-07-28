@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import cn.easybuy.dao.BaseDao;
 import cn.easybuy.entity.User;
+import cn.easybuy.uitls.DataBaseUtil;
 import cn.easybuy.uitls.EmptyUtil;
 /**
  * 用户数据库访问/操作接口实现类
@@ -27,19 +28,26 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		ResultSet rs=null;//结果集对象
 		User user=null;
 	
-		//查询sql语句
-		StringBuffer sql=new StringBuffer("SELECT `id`,`userName`,`loginName`,`password`,`sex`,`identityCode`,`email`,`mobile`,`type` FROM `easybuy_user` WHERE 1=1");
-		
-		if(!EmptyUtil.isEmpty(loginName)) {
-			sql.append(" AND `loginName`=?");
-			rs=super.executeQuery(sql.toString(),loginName);
-		}else {
-			rs=super.executeQuery(sql.toString(), null);
-		}
-		
-		//读取结果集中的数据
-		if(rs.next()) { //获取第一行第一列的数据
-			user=this.tableToClass(rs);
+		try {
+			//查询sql语句
+			StringBuffer sql=new StringBuffer("SELECT `id`,`userName`,`loginName`,`password`,`sex`,`identityCode`,`email`,`mobile`,`type` FROM `easybuy_user` WHERE 1=1");
+			
+			if(!EmptyUtil.isEmpty(loginName)) {
+				sql.append(" AND `loginName`=?");
+				rs=super.executeQuery(sql.toString(),loginName);
+			}else {
+				rs=super.executeQuery(sql.toString(), null);
+			}
+			
+			//读取结果集中的数据
+			if(rs.next()) { //获取第一行第一列的数据
+				user=this.tableToClass(rs);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			//释放资源  数据库连接对象需要在业务层关闭
+			DataBaseUtil.closeAll(null, pstmt, rs);
 		}
 	
 		return user;
@@ -59,6 +67,20 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		user.setUserName(rs.getString("userName"));
 		
 		return user;
+	}
+
+	@Override
+	public int register(User user) throws SQLException {
+		int result=0;
+		
+		StringBuilder sql=new StringBuilder("INSERT INTO `easybuy_user`(`loginName`,`userName`,`password`,`sex`,`identityCode`,`email`,`mobile`,`type`) ");
+		sql.append(" VALUES(?,?,?,?,?,?,?,?)");
+		
+		result=super.executeUpdate(sql.toString(), user.getLoginName(),user.getUserName(),
+				user.getPassword(),user.getSex(),user.getIdentityCode(),user.getEmail(),
+				user.getMobile(),user.getType());
+		
+		return result;
 	}
 
 }
