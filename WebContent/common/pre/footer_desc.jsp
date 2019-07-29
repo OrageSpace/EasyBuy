@@ -12,13 +12,13 @@
     <div id="MyDiv1" class="white_content">             
         <div class="white_d">
             <div class="notice_t">
-                <span class="fr" style="margin-top:10px; cursor:pointer;" onclick="CloseDiv_1('MyDiv1','fade1')"><img src="images/close.gif" /></span>
+                <span class="fr" style="margin-top:10px; cursor:pointer;" onclick="CloseDiv_1('MyDiv1','fade1')"><img src="${ctx}/statics/images/close.gif" /></span>
             </div>
             <div class="notice_c">
            		
                 <table border="0" align="center" style="margin-top:;" cellspacing="0" cellpadding="0">
                   <tr valign="top">
-                    <td width="40"><img src="images/suc.png" /></td>
+                    <td width="40"><img src="${ctx}/statics/images/suc.png" /></td>
                     <td>
                     	<span style="color:#3e3e3e; font-size:18px; font-weight:bold;">
                     		提示信息
@@ -27,10 +27,6 @@
                     		操作成功!
                     	</span>
                     </td>
-                  </tr>
-                  <tr height="50" valign="bottom">
-                  	<td>&nbsp;</td>
-                    <td><a href="#" class="b_sure">确定</a><a href="#" class="b_buy">取消</a></td>
                   </tr>
                 </table>
             </div>

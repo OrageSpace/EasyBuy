@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import cn.easybuy.entity.News;
 import cn.easybuy.entity.ProductCategory;
+import cn.easybuy.service.news.NewsService;
+import cn.easybuy.service.news.NewsServiceImpl;
 import cn.easybuy.service.product.ProductCategoryService;
 import cn.easybuy.service.product.ProductCategoryServiceImpl;
 /**
@@ -23,49 +26,35 @@ import cn.easybuy.service.product.ProductCategoryServiceImpl;
 @WebServlet(urlPatterns= {"/Home"},name="Home")
 public class HomeServlet extends AbstracterServlet {
 	
-	private ProductCategoryService pcs=new ProductCategoryServiceImpl();	;
+	private ProductCategoryService pcs=null;
+	private NewsService newsService=null;
 	
 	private static Logger logger=Logger.getLogger(HomeServlet.class.getName());
 	
-	/*@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		this.doPost(request, response);
+	@Override
+	public void init() throws ServletException {
+		pcs=new ProductCategoryServiceImpl();
+		newsService=new NewsServiceImpl();
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		//设置请求的编码 防止请求中文乱码
-		request.setCharacterEncoding("UTF-8");
-		//设置响应内容类型 以及编码格式
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
-		//获取请求中的参数值
-		String parentId="1";
-		
-		pcs=new ProductCategoryServiceImpl();
-		
-		//调用查询商品分类信息的方法
-		List<ProductCategory> pcList=pcs.queryAllProductCategory(parentId);
-		
-		//将查询到的内容保存到request作用域中
-		request.setAttribute("pcList", pcList);
-		
-		//将页面转发到/pre/index.jsp
-		request.getRequestDispatcher("pre/index.jsp").forward(request, response);
-	}*/
-	
+	/**
+	 * 获取首页中需要的数据并返回页面
+	 * @param request
+	 * @param response
+	 * @return 首页路径
+	 */
 	public String index(HttpServletRequest request,HttpServletResponse response) {
 		//获取请求中的参数值
 		String parentId="1";
 		
 		//调用查询商品分类信息的方法
 		List<ProductCategory> pcList=pcs.queryAllProductCategory(parentId);
+		//调用查询最新5条新闻资讯的方法
+		List<News> newsList=newsService.queryAllNews();
 		
 		//将查询到的内容保存到request作用域中
 		request.setAttribute("pcList", pcList);
+		request.setAttribute("newsList", newsList);
 		
 		return "/pre/index";
 	}
