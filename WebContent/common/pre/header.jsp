@@ -94,7 +94,7 @@
 	        <!--End 所在收货地区 End-->
 	        <span class="fr">
 	        	<c:if test="${empty sessionScope.loginUser}">
-	        		<span class="fl">你好，请<a href="Login?action=toLogin">登录</a>&nbsp;|&nbsp;<a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;</span>
+	        		<span class="fl">你好，请<a href="${ctx}/Login?action=toLogin">登录</a>&nbsp;|&nbsp;<a href="${ctx}/Register?action=toRegister" style="color:#ff4e00;">免费注册</a>&nbsp;</span>
 	        	</c:if>
 	        	<c:if test="${sessionScope.loginUser != null}">
 	        		<span class="fl">欢迎您，${sessionScope.loginUser.userName}&nbsp;|&nbsp;<a href="Regist.html" style="color:#ff4e00;">我的订单</a>&nbsp;</span>
@@ -103,7 +103,7 @@
 	        			<span class="fl">&nbsp;|&nbsp;<a href="Regist.html" style="color:#ff4e00;">后台管理</a>&nbsp;</span>
 	        		</c:if>
 	        		
-	        		<span class="fl">&nbsp;|&nbsp;<a href="Login?action=loginOut" style="color:#ff4e00;">注销</a>&nbsp;</span>
+	        		<span class="fl">&nbsp;|&nbsp;<a href="${ctx}/Login?action=loginOut" style="color:#ff4e00;">注销</a>&nbsp;</span>
 	        	</c:if>
 	        </span>
 	    </div>

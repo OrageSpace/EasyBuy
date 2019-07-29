@@ -18,6 +18,7 @@ import cn.easybuy.service.news.NewsService;
 import cn.easybuy.service.news.NewsServiceImpl;
 import cn.easybuy.service.product.ProductCategoryService;
 import cn.easybuy.service.product.ProductCategoryServiceImpl;
+import cn.easybuy.uitls.ProductCategoryVo;
 /**
  * 访问首页控制类
  * @author 青云 .ltd
@@ -44,16 +45,15 @@ public class HomeServlet extends AbstracterServlet {
 	 * @return 首页路径
 	 */
 	public String index(HttpServletRequest request,HttpServletResponse response) {
-		//获取请求中的参数值
-		String parentId="1";
 		
 		//调用查询商品分类信息的方法
-		List<ProductCategory> pcList=pcs.queryAllProductCategory(parentId);
+		List<ProductCategoryVo> pcvList=pcs.queryAllProductCategory();
+		
 		//调用查询最新5条新闻资讯的方法
 		List<News> newsList=newsService.queryAllNews();
 		
 		//将查询到的内容保存到request作用域中
-		request.setAttribute("pcList", pcList);
+		request.setAttribute("pcvList", pcvList);
 		request.setAttribute("newsList", newsList);
 		
 		return "/pre/index";

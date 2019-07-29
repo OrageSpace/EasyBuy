@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -42,8 +44,17 @@ public class BaseDao {
 			
 			//为预编译sql赋值
 			if(params!=null) {
-				for (int i = 0; i < params.length; i++) {
-					pstmt.setObject(i+1, params[i]);
+				if(params[0] instanceof Collection<?>) {
+					
+					List<Object> param=(List<Object>) params[0];
+					
+					for (int i = 0; i < param.size(); i++) {
+						pstmt.setObject(i+1, param.get(i));
+					}
+				}else {
+					for (int i = 0; i < params.length; i++) {
+						pstmt.setObject(i+1, params[i]);
+					}
 				}
 			}
 			System.out.println(pstmt);

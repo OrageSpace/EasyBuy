@@ -52,10 +52,11 @@ public class ProductCategoryDaoImpl extends BaseDao implements ProductCategoryDa
 		StringBuffer sql=new StringBuffer("SELECT `id`,`name`,`parentId`,`type`,`iconClass` FROM `easybuy_product_category` WHERE 1=1");
 		
 		if(parentId!=null&&!"".equals(parentId)) {//判断是否有其他参数
-			sql.append(" and `type`=?");
+			sql.append(" and `parentId`=?");
 			rs=super.executeQuery(sql.toString(), parentId);
 		}else {
-			rs=super.executeQuery(sql.toString(),null);
+			sql.append(" and `type`=?");
+			rs=super.executeQuery(sql.toString(),1);
 		}
 		
 		try {

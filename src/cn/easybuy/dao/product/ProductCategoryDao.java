@@ -12,7 +12,7 @@ import cn.easybuy.entity.ProductCategory;
 
 public interface ProductCategoryDao{
 	/**
-	 * 获取所有商品分类的方法
+	  *  根据父级id 获取所有商品分类的方法
 	 * @param parentId 所属父级分类id
 	 * @return 查询到的商品分类集合
 	 * @throws SQLException 
