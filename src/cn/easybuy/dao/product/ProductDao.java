@@ -26,4 +26,12 @@ public interface ProductDao {
 	 * @throws Exception 
 	 */
 	public int getProductCount(ProductPrames params) throws Exception;
+	
+	/**
+	  * 根据商品id获取商品信息的方法
+	 * @param id 商品id
+	 * @return 商品对象
+	 * @throws Exception
+	 */
+	public Product getProductById(int id) throws Exception;
 }

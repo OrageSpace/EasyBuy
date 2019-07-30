@@ -24,4 +24,12 @@ public interface ProductService {
 	 * @return 商品总记录数
 	 */
 	public int getProductCount(ProductPrames params);
+	
+	/**
+	  * 根据商品id获取商品信息的方法
+	 * @param id 商品id
+	 * @return 商品对象
+	 * @throws Exception
+	 */
+	public Product getProductById(int id);
 }

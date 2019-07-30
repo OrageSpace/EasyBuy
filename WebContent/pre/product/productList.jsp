@@ -116,7 +116,7 @@
 	                        <div class="name"><a href="#">${product.name}</a></div>
 	                        <div class="carbg">
 	                        	<a href="#" class="ss">收藏</a>
-	                            <a href="#" class="j_car">加入购物车</a>
+	                            <a href="#" class="j_car" onclick="addProductToCart('${product.id}','1');">加入购物车</a>
 	                        </div>
 	                    </li>
                 	</c:forEach>
@@ -145,7 +145,7 @@
 	<script type="text/javascript" src="${ctx}/statics/js/common/lrscroll_1.js"></script>
 	<script type="text/javascript" src="${ctx}/statics/js/common/n_nav.js"></script>
 	<script type="text/javascript" src="${ctx}/statics/js/product/product.js"></script>
-    
+    <script type="text/javascript" src="${ctx}/statics/js/cart/cart.js"></script>
 <!--[if IE 6]>
 <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
 <![endif]-->

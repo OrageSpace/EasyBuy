@@ -63,4 +63,26 @@ public class ProductServiceImpl implements ProductService {
 		return count;
 	}
 
+	@Override
+	public Product getProductById(int id){
+		Product product=null;
+
+		try {
+			//获取数据库连接
+			conn=DataBaseUtil.getConnection();
+			//实例化商品信息数据访问对象
+			productDao=new ProductDaoImpl(conn);
+			
+			product=productDao.getProductById(id);
+		}  catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			//在业务完成后统一关闭 数据库连接对象
+			DataBaseUtil.closeAll(conn, null, null);
+		}
+		
+		return product;
+	}
+
 }

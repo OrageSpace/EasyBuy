@@ -134,4 +134,26 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 		return count;
 	}
 
+	@Override
+	public Product getProductById(int id) throws Exception {
+		ResultSet rs=null;//结果集对象
+		Product product=null;
+		
+		try {
+			String sql="SELECT `id`,`name`,`description`,`price`,`stock`,`categoryLevel1`,`categoryLevel2`,`categoryLevel3`,`fileName`,`isDelete` FROM `easybuy_product` WHERE `id`=?";
+			
+			rs=super.executeQuery(sql, id);
+			
+			//读取结果集中的数据
+			if(rs.next()) {
+				product=this.tableToClass(rs);
+			}
+		}finally {
+			//释放资源  数据库连接对象需要在业务逻辑层关闭
+			DataBaseUtil.closeAll(null, pstmt, rs);
+		}
+		
+		return product;
+	}
+
 }
