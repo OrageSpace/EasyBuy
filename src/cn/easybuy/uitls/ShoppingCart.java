@@ -50,9 +50,8 @@ public class ShoppingCart {
 		}
 		
 		//遍历原有的购物车子项集合
-		
 		for (ShoppingCartItem shoppingCartItem : items) {
-			if(product.getName().equals(shoppingCartItem.getProduct().getId())) {
+			if(product.getId()==shoppingCartItem.getProduct().getId()) {
 				flag=true;//表示集合中有该元素
 				
 				shoppingCartItem.setQuantity(shoppingCartItem.getQuantity()+quantity);
@@ -86,4 +85,6 @@ public class ShoppingCart {
 		
 		return returnResult.returnSuccess();
 	}
+	
+	
 }

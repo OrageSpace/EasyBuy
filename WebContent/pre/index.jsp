@@ -23,8 +23,9 @@
 <title>易买网--首页</title>
 </head>
 <body>  
+<jsp:include page="../common/pre/header.jsp" flush="true"/>
 <!--Begin Header Begin-->
-<%@ include file="../common/pre/header.jsp" %>
+
 <%@ include file="../common/pre/searchBar.jsp" %>
 <!--End Header End--> 
 <!--Begin Menu Begin-->

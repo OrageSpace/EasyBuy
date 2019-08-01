@@ -43,7 +43,8 @@
     <!--End 筛选条件 End-->
     
     <div class="content mar_20">
-    	<div class="l_history">
+    	<div id="favoriteList">
+    		<div class="l_history">
         	<div class="his_t">
             	<span class="fl">浏览历史</span>
                 <span class="fr"><a href="#">清空</a></span>
@@ -86,6 +87,7 @@
                 </li>
         	</ul>
         </div>
+    	</div>
         <div class="l_list">
         	<div class="list_t">
             	<span class="fl list_or">
@@ -115,7 +117,7 @@
 	                        </div>
 	                        <div class="name"><a href="#">${product.name}</a></div>
 	                        <div class="carbg">
-	                        	<a href="#" class="ss">收藏</a>
+	                        	<a href="#" onclick="addFavorite(parseInt('${product.id}'));" class="ss">收藏</a>
 	                            <a href="#" class="j_car" onclick="addProductToCart('${product.id}','1');">加入购物车</a>
 	                        </div>
 	                    </li>

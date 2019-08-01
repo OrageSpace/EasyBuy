@@ -37,3 +37,111 @@ function refreshCart(){
 		}
 	});
 }
+
+function settlement1(){
+	$.ajax({
+		url:contentPath+"/Cart",
+		method:"POST",
+		data:{action:"settlement1"},
+		success:function(data){
+			$("#settlmentDiv").html(data);
+		}
+	});
+}
+
+settlement1();
+
+
+function subQuantity(obj,id,stock){		
+	var c = obj.parent().find(".car_ipt").val();
+	
+	c=parseInt(c)+1;
+	
+	if(c>stock){
+		showMessage("商品库存不足！");
+		return;
+	}
+		
+	modifyQuantity(c,id,obj);
+}
+
+function LessQuantity(obj,id){    
+	var c = obj.parent().find(".car_ipt").val();
+	
+	console.log(1);
+	if(c==1){    
+		c=1; 
+		return;
+	}else{    
+		c=parseInt(c)-1; 
+	}
+	modifyQuantity(c,id,obj);
+}  
+
+function modifyQuantity(c,id,obj){
+	$.ajax({
+		url:contentPath+"/Cart",
+		method:"POST",
+		data:{action:"modifyQuantity",id:id,quantity:c},
+		success:function(data){
+		  data=eval("("+data+")");	
+		  
+		  if(data.status==-1){
+			  showMessage(data.message);
+			  return;
+		  }
+		  refreshCart();
+		 setTimeout(settlement1(),1000);
+		},
+		error:function(){
+			showMessage("操作失败，数量更新时发生异常，请稍后重试或与系统管理员联系！");
+		}
+	});
+}
+
+/**
+ * 将商品加入收藏的函数
+ * @param id
+ * @returns
+ */
+function addFavorite(id){
+	$.ajax({
+		url:contentPath+"/Favorite",
+		method:"POST",
+		data:{
+			action:"addFavorite",
+			id:id
+		},
+		dataType:"JSON",
+		success:function(data){
+			if(data.status==1){
+				refreshFavorite();
+			}else if(data.status==-1){
+				showMessage(data.message);
+			}
+		},
+		error:function(){
+			showMessage("添加收藏时发生异常，请与系统管理员联系！");
+		}
+	});
+}
+
+/**
+ * 用于刷新收藏列表的函数
+ * @returns
+ */
+function refreshFavorite(){
+	$.ajax({
+		url:contentPath+"/Favorite",
+		method:"POST",
+		data:{action:"refreshFavorite"},
+		dataType:"text",
+		success:function(data){
+			console.log(data);
+			$("#favoriteList").html(data);
+		},
+		error:function(){
+			showMessage("刷新收藏列表时发生异常，请与系统管理员联系！");
+		}
+	});
+}

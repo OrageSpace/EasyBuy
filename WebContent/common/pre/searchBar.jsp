@@ -27,7 +27,10 @@
     	<div class="car_t">购物车 [ <span>${sessionScope.cart eq null ? 0:sessionScope.cart.items.size()}</span> ]</div>
         <div class="car_bg">
        		<!--Begin 购物车未登录 Begin-->
-        	<div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
+        	<c:if test="${empty sessionScope.loginUser}">
+        		<div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a>
+        	</c:if>
+        	 查看购物车！
             <!--End 购物车未登录 End-->
             <!--Begin 购物车已登录 Begin-->
             <ul class="cars">
@@ -39,8 +42,20 @@
 	                </li>
             	</c:forEach>
             </ul>
-            <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>${sessionScope.cart.sumCost}</span></div>
-            <div class="price_a"><a href="#">去购物车结算</a></div>
+            
+            <c:if test="${sessionScope.cart.items.size()>0}">
+            	<div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>${sessionScope.cart.sumCost}</span></div>
+            </c:if>
+            
+            <div class="price_a">
+            	<c:if test="${!empty sessionScope.loginUser}">
+            		<a href="${ctx}/Cart?action=toSettlement">去购物车结算</a>
+            	</c:if>
+            	<c:if test="${empty sessionScope.loginUser}">
+            		<a href="${ctx}/Login?action=toLogin">去登录</a>
+            	</c:if>
+            </div>
+            </div>
             <!--End 购物车已登录 End-->
         </div>
     </div>

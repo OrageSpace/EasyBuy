@@ -1,10 +1,18 @@
 package cn.easybuy.entity;
+
+import java.io.Serializable;
+
 /**
  * 产品实体类
  * @author 青云 .ltd
  *
  */
-public class Product {
+public class Product implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int id;//商品编号
 	private String name;//商品名称
 	private String description;//商品描述

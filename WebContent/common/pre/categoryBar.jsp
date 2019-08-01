@@ -27,7 +27,7 @@
 	                                	<div class="zj_l_c">
 		                                    <h2>${pc2.productCategory.name}</h2>
 		                                    <c:forEach var="pc3" items="${pc2.productCategoryVoList}">
-		                                    	<a href="#">${pc3.productCategory.name}</a>|
+		                                    	<a href="${ctx}/Product?action=queryProductList&keyWords=${pc3.productCategory.name}">${pc3.productCategory.name}</a>|
 		                                    </c:forEach>
 	                               		</div>
 	                                </c:forEach>
@@ -46,7 +46,7 @@
     	<ul class="menu_r">                                                                                                                                               
         	<li><a href="Index.html">首页</a></li>
             <c:forEach var="category" items="${requestScope.pcvList}">
-            	<li><a href="Index.html">${category.productCategory.name}</a></li>
+            	<li><a href="${ctx}/Product?action=queryProductList&keyWords=${category.productCategory.name}&parentId=${category.productCategory.parentId}">${category.productCategory.name}</a></li>
             </c:forEach>
         </ul>
         <div class="m_ad">中秋送好礼！</div>
