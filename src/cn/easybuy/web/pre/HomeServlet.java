@@ -1,4 +1,4 @@
-package cn.easybuy.web;
+package cn.easybuy.web.pre;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,6 +19,7 @@ import cn.easybuy.service.news.NewsServiceImpl;
 import cn.easybuy.service.product.ProductCategoryService;
 import cn.easybuy.service.product.ProductCategoryServiceImpl;
 import cn.easybuy.uitls.ProductCategoryVo;
+import cn.easybuy.web.AbstracterServlet;
 /**
  * 访问首页控制类
  * @author 青云 .ltd

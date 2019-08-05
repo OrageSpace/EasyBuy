@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import cn.easybuy.dao.product.ProductCategoryDao;
 import cn.easybuy.dao.product.ProductCategoryDaoImpl;
 import cn.easybuy.entity.ProductCategory;
+import cn.easybuy.parames.ProductCategoryParames;
 import cn.easybuy.uitls.DataBaseUtil;
 import cn.easybuy.uitls.ProductCategoryVo;
 /**
@@ -111,5 +112,49 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
 			DataBaseUtil.closeAll(conn, null, null);
 		}
 		return pcv1List;
+	}
+
+	@Override
+	public List<ProductCategory> pageQueryProductCategory(ProductCategoryParames parames) throws Exception {
+		 List<ProductCategory> pcList=new ArrayList<ProductCategory>();
+		
+		 try {
+			//获取数据库连接
+			conn=DataBaseUtil.getConnection();
+			//实例化商品分类数据访问实现类
+			pcd=new ProductCategoryDaoImpl(conn);
+			
+			//调用查询所有商品分类信息的方法
+			pcList=pcd.pageQueryProductCategory(parames);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			//在业务逻辑完成后，释放数据库连接对象
+			DataBaseUtil.closeAll(conn, null, null);
+		}
+		
+		return pcList;
+	}
+
+	@Override
+	public int getProductCategoryCount() throws Exception {
+		int count=0;
+		
+		try {
+			//获取数据库连接
+			conn=DataBaseUtil.getConnection();
+			//实例化商品分类数据访问实现类
+			pcd=new ProductCategoryDaoImpl(conn);
+			
+			count=pcd.getProductCategoryCount(null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			//在业务逻辑完成后，释放数据库连接对象
+			DataBaseUtil.closeAll(conn, null, null);
+		}
+		
+		return count;
 	}
 }

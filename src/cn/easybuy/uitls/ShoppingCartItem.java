@@ -17,7 +17,7 @@ public class ShoppingCartItem {
 	public ShoppingCartItem(Product product,Integer quantity) {
 		this.product=product;
 		this.quantity=quantity;
-		this.cost=product.getPrice()*cost;
+		this.cost=product.getPrice()*quantity;
 	}
 	
 	public Product getProduct() {

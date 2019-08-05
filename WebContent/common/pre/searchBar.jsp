@@ -6,14 +6,6 @@
 <script type="text/javascript">
 	var contentPath="${ctx}";
 </script>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 <div class="top" id="searchBar">
     <div class="logo"><a href="Index.html"><img src="${ctx}/statics/images/logo.png" /></a></div>
     <div class="search">
@@ -60,5 +52,3 @@
         </div>
     </div>
 </div>
-</body>
-</html>

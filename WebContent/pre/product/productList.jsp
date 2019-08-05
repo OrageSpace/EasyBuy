@@ -111,7 +111,7 @@
                 <ul class="cate_list">
                 	<c:forEach var="product" items="${requestScope.pageObj.list}">
                 		<li>
-	                    	<div class="img"><a href="#"><img src="${ctx}/files/${product.fileName}" width="210" height="185" /></a></div>
+	                    	<div class="img"><a href="${ctx}/Product?action=queryProductDetails&id=${product.id}"><img src="${ctx}/files/${product.fileName}" width="210" height="185" /></a></div>
 	                        <div class="price">
 	                            <font>￥<span>${product.price}</span></font> &nbsp; 26R
 	                        </div>
@@ -127,9 +127,6 @@
                 <div class="pages" id="pages">
                 	
                 </div>
-                
-                
-                
             </div>
         </div>
     </div>

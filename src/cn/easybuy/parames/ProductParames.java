@@ -4,7 +4,7 @@ package cn.easybuy.parames;
  * @author 青云 .ltd
  *
  */
-public class ProductPrames {
+public class ProductParames {
 	private boolean isPage=false;//是否分页
 	private int stateIndex;//开始行数
 	private int pageSize;//页面大小

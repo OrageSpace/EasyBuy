@@ -72,7 +72,7 @@
           </tr>
           <tr valign="top" height="150">
           	<td colspan="6" align="right">
-            	<a href="${ctx}/Product?action=queryProductList"><img src="${ctx}/statics/images/buy1.gif" /></a>&nbsp; &nbsp; <a href="#"><img src="${ctx}/statics/images/buy2.gif" /></a>
+            	<a href="${ctx}/Product?action=queryProductList"><img src="${ctx}/statics/images/buy1.gif" /></a>&nbsp; &nbsp; <a href="#" onclick="settlement2();"><img src="${ctx}/statics/images/buy2.gif" /></a>
             </td>
           </tr>
         </table>

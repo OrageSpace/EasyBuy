@@ -6,7 +6,7 @@ import java.util.List;
 import cn.easybuy.dao.product.ProductDao;
 import cn.easybuy.dao.product.ProductDaoImpl;
 import cn.easybuy.entity.Product;
-import cn.easybuy.parames.ProductPrames;
+import cn.easybuy.parames.ProductParames;
 import cn.easybuy.uitls.DataBaseUtil;
 /**
  * 商品信息业务逻辑处理接口实现类
@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao=null;
 
 	@Override
-	public List<Product> queryProductList(ProductPrames params) {
+	public List<Product> queryProductList(ProductParames params) {
 		List<Product> products=null;
 		
 		try {
@@ -42,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int getProductCount(ProductPrames params) {
+	public int getProductCount(ProductParames params) {
 		int count=0;
 		
 		try {

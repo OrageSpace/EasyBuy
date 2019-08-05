@@ -3,7 +3,7 @@ package cn.easybuy.dao.product;
 import java.util.List;
 
 import cn.easybuy.entity.Product;
-import cn.easybuy.parames.ProductPrames;
+import cn.easybuy.parames.ProductParames;
 
 /**
  * 商品信息数据库访问接口
@@ -17,7 +17,7 @@ public interface ProductDao {
 	 * @return 商品信息列表
 	 * @throws Exception 
 	 */
-	public List<Product> queryProductList(ProductPrames params) throws Exception;
+	public List<Product> queryProductList(ProductParames params) throws Exception;
 	
 	/**
 	  * 查询商品的总数量
@@ -25,7 +25,7 @@ public interface ProductDao {
 	 * @return 商品总记录数
 	 * @throws Exception 
 	 */
-	public int getProductCount(ProductPrames params) throws Exception;
+	public int getProductCount(ProductParames params) throws Exception;
 	
 	/**
 	  * 根据商品id获取商品信息的方法
@@ -34,4 +34,13 @@ public interface ProductDao {
 	 * @throws Exception
 	 */
 	public Product getProductById(int id) throws Exception;
+	
+	/**
+	 * 更新库存信息的方法
+	 * @param id 商品编号
+	 * @param quantity 修改后的数量
+	 * @return 
+	 * @throws Exception
+	 */
+	public int updateProductInfo(int id,int quantity) throws Exception;
 }

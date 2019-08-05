@@ -1,4 +1,4 @@
-package cn.easybuy.web;
+package cn.easybuy.web.pre;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.easybuy.entity.Product;
-import cn.easybuy.parames.ProductPrames;
+import cn.easybuy.parames.ProductParames;
 import cn.easybuy.service.product.ProductCategoryService;
 import cn.easybuy.service.product.ProductCategoryServiceImpl;
 import cn.easybuy.service.product.ProductService;
@@ -16,6 +16,7 @@ import cn.easybuy.service.product.ProductServiceImpl;
 import cn.easybuy.uitls.EmptyUtil;
 import cn.easybuy.uitls.Pager;
 import cn.easybuy.uitls.ProductCategoryVo;
+import cn.easybuy.web.AbstracterServlet;
 
 /**
   * 商品信息处理控制类
@@ -48,7 +49,7 @@ public class ProductServlet extends AbstracterServlet {
 	 */
 	public String queryProductList(HttpServletRequest request,HttpServletResponse response)
 		throws Exception{
-		ProductPrames prames=new  ProductPrames();
+		ProductParames prames=new  ProductParames();
 		
 		//获取请求中的参数值
 		String keyWords=EmptyUtil.isEmpty(request.getParameter("keyWords"))
@@ -67,7 +68,7 @@ public class ProductServlet extends AbstracterServlet {
 				?1:Integer.valueOf(request.getParameter("currPageNo"));
 		
 		int pageSize=EmptyUtil.isEmpty(request.getParameter("pageSize"))
-				?12:Integer.valueOf(request.getParameter("pageSize"));
+				?16:Integer.valueOf(request.getParameter("pageSize"));
 		
 		prames.setCategoryId(categoryId);
 		prames.setKeyWords(keyWords);
@@ -92,5 +93,25 @@ public class ProductServlet extends AbstracterServlet {
 		request.setAttribute("keyWords", keyWords);
 		 
 		return "pre/product/productList";
+	}
+	
+	/**
+	 * 获取商品详情信息的方法
+	 * @param request
+	 * @param response
+	 * @return 商品详情信息展示页面路径
+	 */
+	public String queryProductDetails(HttpServletRequest request,HttpServletResponse response) {
+		//获取请求中的参数值
+		int id=Integer.valueOf(request.getParameter("id"));
+		//查询指定商品信息
+		Product product=productService.getProductById(id);
+		//查询所有商品分类对象
+		List<ProductCategoryVo> pcvList=pcs.queryAllProductCategory();
+		
+		//将查询到的信息保存到request作用域中
+		request.setAttribute("pcvList", pcvList);
+		request.setAttribute("product", product);
+		return "/pre/product/productDetails";
 	}
 }

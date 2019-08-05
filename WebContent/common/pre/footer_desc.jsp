@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
     <!--Begin 弹出层-加入购物车 Begin-->
     <div id="fade1" class="black_overlay"></div>
     <div id="MyDiv1" class="white_content">             
@@ -62,5 +55,3 @@
 	<script type="text/javascript" src="${ctx}/statics/js/common/lrscroll_1.js"></script>
 	<script type="text/javascript" src="${ctx}/statics/js/login/login.js"></script>
 	<script type="text/javascript" src="${ctx}/statics/js/common/shade.js"></script>
-</body>
-</html>

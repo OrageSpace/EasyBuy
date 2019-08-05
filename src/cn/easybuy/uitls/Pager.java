@@ -15,13 +15,13 @@ public class Pager {
 	private int pageSize;//页面大小
 	private int totalPageCount;//总记录数
 	private String url;//请求页面地址
-	private List<Product> list;//查询到的数据
+	private List<Object> list;//查询到的数据
 	
-	public Pager(int currPageNo,int totalCount,int pageSize,List<Product> list) {
+	public Pager(int currPageNo,int totalCount,int pageSize,Object list) {
 		this.currPageNo=currPageNo;
 		this.totalCount=totalCount;
 		this.pageSize=pageSize;
-		this.list=list;
+		this.list=(List<Object>) list;
 		
 		this.totalPageCount=this.totalCount%this.pageSize==0
 				?(this.totalCount/this.pageSize):(this.totalCount/this.pageSize)+1;
@@ -63,11 +63,11 @@ public class Pager {
 		this.totalPageCount = totalPageCount;
 	}
 
-	public List<Product> getList() {
+	public List<Object> getList() {
 		return list;
 	}
 
-	public void setList(List<Product> list) {
+	public void setList(List<Object> list) {
 		this.list = list;
 	}
 

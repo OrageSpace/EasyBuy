@@ -1,4 +1,4 @@
-package cn.easybuy.web;
+package cn.easybuy.web.pre;
 /**
  * 商品收藏控制类
  * @author 青云 .ltd
@@ -20,6 +20,7 @@ import cn.easybuy.service.product.ProductServiceImpl;
 import cn.easybuy.uitls.EmptyUtil;
 import cn.easybuy.uitls.MemcachedUtils;
 import cn.easybuy.uitls.ReturnResult;
+import cn.easybuy.web.AbstracterServlet;
 
 @WebServlet(urlPatterns= {"/Favorite"},name="Favorite")
 public class FavoriteServlet extends AbstracterServlet {

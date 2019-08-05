@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
+
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -48,7 +50,7 @@
 		<div class="buttons-con">
 			<div class="action-link-wrap">
 				<a onclick="history.back(-1)" class="link-button link-back-button">返回上一页</a>
-				<a href="/pre/index.jsp" class="link-button">返回首页</a>
+				<a href="${ctx}/Home?action=index" class="link-button">返回首页</a>
 			</div>
 		</div>
 	</div>

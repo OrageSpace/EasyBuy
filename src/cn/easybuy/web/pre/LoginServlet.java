@@ -1,4 +1,4 @@
-package cn.easybuy.web;
+package cn.easybuy.web.pre;
 
 import java.io.IOException;
 
@@ -14,6 +14,7 @@ import cn.easybuy.service.user.UserServiceImpl;
 import cn.easybuy.uitls.EmptyUtil;
 import cn.easybuy.uitls.ReturnResult;
 import cn.easybuy.uitls.SecrityUtils;
+import cn.easybuy.web.AbstracterServlet;
 /**
  * 登录请求控制处理类
  * @author 青云 .ltd

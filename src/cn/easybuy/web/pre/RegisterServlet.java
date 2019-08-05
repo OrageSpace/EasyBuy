@@ -1,4 +1,4 @@
-package cn.easybuy.web;
+package cn.easybuy.web.pre;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,6 +12,7 @@ import cn.easybuy.entity.User;
 import cn.easybuy.service.user.UserService;
 import cn.easybuy.service.user.UserServiceImpl;
 import cn.easybuy.uitls.Constans.UserType;
+import cn.easybuy.web.AbstracterServlet;
 import cn.easybuy.uitls.RegUtils;
 import cn.easybuy.uitls.ReturnResult;
 import cn.easybuy.uitls.SecrityUtils;

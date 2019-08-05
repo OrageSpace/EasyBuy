@@ -3,7 +3,7 @@ package cn.easybuy.entity;
 import java.util.Date;
 
 /**
- * 用户地址实体类
+ * 用户地址实现接口
  * @author 青云 .ltd
  *
  */

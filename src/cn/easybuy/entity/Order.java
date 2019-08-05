@@ -15,7 +15,6 @@ public class Order {
 	private Date createTime;//创建时间
 	private double cost;//金额
 	private int status;//订单状态
-	private int type;//订单类型
 	private String serialNumber;//订单编号
 	
 	public int getId() {
@@ -38,9 +37,6 @@ public class Order {
 	}
 	public int getStatus() {
 		return status;
-	}
-	public int getType() {
-		return type;
 	}
 	public String getSerialNumber() {
 		return serialNumber;
@@ -65,9 +61,6 @@ public class Order {
 	}
 	public void setStatus(int status) {
 		this.status = status;
-	}
-	public void setType(int type) {
-		this.type = type;
 	}
 	public void setSerialNumber(String serialNumber) {
 		this.serialNumber = serialNumber;

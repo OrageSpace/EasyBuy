@@ -8,7 +8,7 @@ import java.util.List;
 
 import cn.easybuy.dao.BaseDao;
 import cn.easybuy.entity.Product;
-import cn.easybuy.parames.ProductPrames;
+import cn.easybuy.parames.ProductParames;
 import cn.easybuy.uitls.DataBaseUtil;
 import cn.easybuy.uitls.EmptyUtil;
 
@@ -24,7 +24,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 	}
 
 	@Override
-	public List<Product> queryProductList(ProductPrames params)
+	public List<Product> queryProductList(ProductParames params)
 			throws Exception{
 		ResultSet rs=null;//结果集对象
 		List<Product> products=new ArrayList<Product>();
@@ -98,7 +98,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 	}
 
 	@Override
-	public int getProductCount(ProductPrames params) 
+	public int getProductCount(ProductParames params) 
 			throws Exception{
 		ResultSet rs=null;//结果集对象
 		int count=0;
@@ -154,6 +154,20 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 		}
 		
 		return product;
+	}
+
+	@Override
+	public int updateProductInfo(int id, int quantity) throws Exception {
+		int result=0;
+		
+		String sql="UPDATE `easybuy_product` SET `stock`=`stock`-? WHERE `id`=? AND `stock`>=?";
+		result=super.executeUpdate(sql, quantity,id,quantity);
+		
+		if(result!=1) {
+			throw new SQLException("商品库存不足：id="+id);
+		}
+		
+		return result;
 	}
 
 }

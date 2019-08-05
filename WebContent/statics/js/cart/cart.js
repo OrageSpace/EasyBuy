@@ -49,6 +49,18 @@ function settlement1(){
 	});
 }
 
+function settlement2(){
+	$.ajax({
+		url:contentPath+"/Cart",
+		method:"POST",
+		data:{action:"settlement2"},
+		success:function(data){
+			$("#settlmentDiv").html(data);
+		}
+	});
+}
+
+
 settlement1();
 
 
@@ -142,6 +154,36 @@ function refreshFavorite(){
 		},
 		error:function(){
 			showMessage("刷新收藏列表时发生异常，请与系统管理员联系！");
+		}
+	});
+}
+
+var payMethod="支付宝";
+
+function changePaymentMethod(obj){
+	$(obj).addClass("checked").siblings().removeClass("checked");
+	payMethod=obj.text();
+}
+
+/**
+ * 生成订单
+ * @returns
+ */
+function settlement3(){
+	var addressId=$("#addressId").val();
+	var newAddress=$("#city option:selected").text()+$("#area option:selected").text()+$("#county option:selected").text();
+	
+	$.ajax({
+		url:contentPath+"/Cart",
+		method:"POST",
+		data:{
+			action:"toSettlement3",
+			addressId:addressId,
+			newAddress:newAddress,
+			payMethod:payMethod
+		},
+		success:function(data){
+			$("#settlmentDiv").html(data);
 		}
 	});
 }
